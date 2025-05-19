@@ -1,10 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function Home() {
   const navigate = useNavigate();
   const [customCoins, setCustomCoins] = useState("");
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    const currentUser = localStorage.getItem("currentUser");
+    if (!currentUser) {
+      navigate("/login");
+    } else {
+      setUsername(currentUser);
+    }
+  }, [navigate]);
 
   const startGame = (numCoins) => {
     navigate(`/game/${numCoins}`);
@@ -19,9 +29,21 @@ function Home() {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("currentUser");
+    navigate("/");
+  };
+
   return (
     <div className="home-container">
       <h1>🪙 The Fake Coin Challenge</h1>
+      {username && (
+        <div className="user-info">
+          <p>Welcome, <strong>{username}</strong>!</p>
+          
+        </div>
+      )}
+
       <p>Select the number of coins to play with:</p>
 
       <div className="card-container">
@@ -44,16 +66,17 @@ function Home() {
         />
         <button onClick={handleCustomStart}>Start</button>
       </div>
-      
-      <Link to="/learn" className="learn-more-button">Learn More</Link>
 
+      <Link to="/leaderboard" className="learn-more-button">Leaderboard</Link>
+      <br></br>
+      <Link to="/learn" className="learn-more-button">Learn More</Link>
+      <br></br>
+      <button className="logout-button" onClick={handleLogout}>🚪 Logout</button>
       <footer>
         <p>Test your logic and beat the scale! ⚖️</p>
       </footer>
     </div>
   );
-  
-
 }
 
 export default Home;

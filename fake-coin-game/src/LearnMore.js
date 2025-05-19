@@ -49,7 +49,7 @@ const LearnMore = () => {
         <li><strong>Space:</strong> O(1) (if iterative)</li>
       </ul>
 
-      <Link to="/" className="btn">🔙 Back to Home</Link>
+      <Link to="/home" className="btn">🔙 Back to Home</Link>
     </div>
   );
 };

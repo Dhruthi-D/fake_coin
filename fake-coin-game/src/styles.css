@@ -287,3 +287,86 @@ button:hover {
 .btn:hover {
   background-color: #45a049;
 } 
+
+.login-container {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 400px; /* Set fixed container width */
+  margin: 100px auto; /* Center it */
+}
+
+.login-container h2 {
+  margin-bottom: 25px;
+  color: #00796b;
+}
+
+.login-container input,
+.login-container button {
+  width: 100%; /* Make all form elements full width */
+  box-sizing: border-box; /* Prevent padding from breaking layout */
+}
+
+.login-container input {
+  padding: 12px 15px;
+  margin: 10px 0;
+  border: 2px solid #b2dfdb;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.login-container button {
+  padding: 12px;
+  background-color: #00796b;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  margin-top: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-container button:hover {
+  background-color: #004d40;
+}
+
+.user-info {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.logout-button {
+  background-color: #853131;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #cc0000;
+}
+table {
+  margin: auto;
+  border-collapse: collapse;
+  width: 60%;
+}
+
+th, td {
+  padding: 12px 20px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+th {
+  background-color: #f4f4f4;
+}

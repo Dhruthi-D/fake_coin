@@ -16,17 +16,42 @@ function Result() {
   } = location.state || {};
 
   const playAgain = () => {
-    navigate("/");
+    navigate("/home");
   };
 
   useEffect(() => {
-    // Launch confetti if solved within allowed weighings
+    // 🎉 Launch confetti if solved optimally
     if (correct && extraWeighings === 0) {
       confetti({
         particleCount: 150,
         spread: 80,
         origin: { y: 0.6 },
       });
+    }
+
+    // 💯 Calculate and store score in leaderboard
+    const basePoints = 100;
+    const points = correct ? Math.max(basePoints - extraWeighings * 20, 0) : 0;
+
+const username = localStorage.getItem("currentUser"); // or "username", if that's more consistent
+    if (username) {
+      const leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+
+const existing = leaderboard.find((u) => u.username === username);
+let updatedLeaderboard;
+
+if (!existing) {
+  updatedLeaderboard = [...leaderboard, { username, score: points }];
+} else if (points > existing.score) {
+  updatedLeaderboard = leaderboard.map((u) =>
+    u.username === username ? { ...u, score: points } : u
+  );
+} else {
+  updatedLeaderboard = leaderboard;
+}
+
+localStorage.setItem("leaderboard", JSON.stringify(updatedLeaderboard));
+
     }
   }, [correct, extraWeighings]);
 
